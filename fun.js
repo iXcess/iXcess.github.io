@@ -4,7 +4,7 @@
 
     //  If you don't have QSA, you must hate me
     if(!doc.querySelector) {
-        return alert('Your browser sucks. Do you happen to use Internet Explorer?.');
+        return alert('Your browser sucks. Sorry.');
     }
     
     //  I never node her that well, Officer.
@@ -53,7 +53,7 @@
                     }, 400);
                 }
             }
-        }, 10);
+        }, 40);
     };
     
     animate(0);

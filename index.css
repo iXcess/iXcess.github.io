@@ -9,7 +9,7 @@
 }
 
 body {
-    background: #f9f9f9 url('static_tmp/subtle_dots.png') repeat;
+    background: #f9f9f9 url('static_tmp/paper.png') repeat;
     color: #222;
     
     font: 15px/24px "Bitstream Vera Sans Mono", "Anonymous Pro", "Consolas", monospace;
@@ -79,13 +79,13 @@ a:hover {
 .social-links {
     position: absolute;
     left: 130px;
-    top: 40%;
+    top: 48%;
     margin-top: 218px;
-    -webkit-animation: logo 34s 1;
-    -moz-animation: logo 34s 1;
-    -ms-animation: logo 34s 1;
-    -o-animation: logo 34s 1;
-    animation: logo 34s 1;
+    -webkit-animation: logo 28s 1;
+    -moz-animation: logo 28s 1;
+    -ms-animation: logo 28s 1;
+    -o-animation: logo 28s 1;
+    animation: logo 28s 1;
 }
 
 .social-links li {
@@ -95,67 +95,74 @@ a:hover {
 
 .social-links li a {
     display: block;
-    width: 40px;
-    height: 28px;
+    width: 33px;
+    height: 33px;
     text-indent: -999px;
     overflow: hidden;
-    background: url('static_tmp/social_links.png') no-repeat;
     text-decoration: none;
     border: 0;
 }
 
-.social-links li a.thejibe {
-    width: 22px;
+.social-links li a.github {
+    background: url('static_tmp/github.png') no-repeat;
+    background-size: 100%;
 }
 
-.social-links li a.thejibe:hover {
-    background-position: 0 -30px;
+.social-links li a.github:hover {
+    background: url('static_tmp/githubw.png') no-repeat;
+    background-size: 100%;
 }
 
 .social-links li a.twitter {
-    background-position: -55px 0;
-    width: 20px;
+    background: url('static_tmp/twitter.png') no-repeat;
+    background-size: 100%;
 }
 
 .social-links li a.twitter:hover {
-    background-position: -55px -30px;
+    background: url('static_tmp/twitterw.png') no-repeat;
+    background-size: 100%;
 }
 
 .social-links li a.facebook {
-    background-position: -79px 0;
-    width: 14px;
+    background: url('static_tmp/facebook.png') no-repeat;
+    background-size: 100%;
 }
 
 .social-links li a.facebook:hover {
-    background-position: -79px -30px;
+    background: url('static_tmp/facebookw.png') no-repeat;
+    background-size: 100%;
 }
 
 .social-links li a.linkedin {
-    background-position: -28px 0;
-    width: 20px;
+    background: url('static_tmp/linkedin.png') no-repeat;
+    background-size: 100%;
 }
 
 .social-links li a.linkedin:hover {
-    background-position: -28px -30px;
+    background: url('static_tmp/linkedinw.png') no-repeat;
+    background-size: 100%;
 }
 
-.social-links li a.soundcloud {
-    background-position: -98px 0;
-    width: 21px;
+.social-links li a.instagram {
+    background: url('static_tmp/instagram.png') no-repeat;
+    background-size: 100%;
 }
 
-.social-links li a.soundcloud:hover {
-    background-position: -98px -30px;
+.social-links li a.instagram:hover {
+    background: url('static_tmp/instagramw.png') no-repeat;
+    background-size: 100%;
 }
 
-.social-links li a.mixcloud {
-    background-position: -120px 0;
-    width: 31px;
+.social-links li a.youtube {
+    background: url('static_tmp/youtube.png') no-repeat;
+    background-size: 100%;
 }
 
-.social-links li a.mixcloud:hover {
-    background-position: -120px -30px;
+.social-links li a.youtube:hover {
+    background: url('static_tmp/youtubew.png') no-repeat;
+    background-size: 100%;
 }
+
 
 
 
