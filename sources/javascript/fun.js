@@ -4,7 +4,7 @@
 
     //  If you don't have QSA, you must hate me
     if(!doc.querySelector) {
-        return alert('Your browser sucks. Sorry.');
+        return alert('Your browser sucks. Do you happen to use Internet Explorer?');
     }
     
     //  I never node her that well, Officer.
