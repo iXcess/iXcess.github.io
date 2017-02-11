@@ -95,7 +95,6 @@ mark{background:none}
 hr{height:1px;margin:0;padding:0}u{text-decoration:none}
 table th{text-align:left}
 a{color:inherit;outline:none}
-html{background:#f8f8f8}
 body{
 	font-family:Freight Big Pro;
 	font-weight:300;
@@ -383,7 +382,7 @@ ul li {
 }
 
 #first-line {
-    font-size: 24px;
+    font-size: 26px;
 }
 
 strong {
@@ -491,7 +490,7 @@ strong {
     -moz-animation: logo 24s 1;
     -ms-animation: logo 24s 1;
     -o-animation: logo 24s 1;
-    animation: logo 24s 1;
+    animation: logo 2s 1;
 }
 
 #special-texts {
@@ -511,6 +510,52 @@ strong {
 	opacity:1;
 	position:absolute;top:0px;bottom:0px;left:-43% !important;
 }
+
+
+.console {
+	counter-reset:line;
+	width:90%;
+	height:100%;
+	min-height:134px;
+	max-height:500px;
+	overflow-y:auto;
+	display:inline-block;
+	background:black;
+	color:white;
+	font-size:15px;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	margin-top: 25%;
+	font-family:monospace;
+	left: 40px;
+	padding:25px;
+	position:relative
+}
+
+
+.console li .cursor {
+	width:5px;height:16px;margin-left:3px;vertical-align:middle;background:white;display:inline-block;
+	-webkit-animation:cursorAnim 1.5s infinite;
+	-moz-animation:cursorAnim 1.5s infinite;
+	-o-animation:cursorAnim 1.5s infinite;
+	animation:cursorAnim 1.5s infinite
+}
+
+
+pre, td, p { background-color:transparent; }
+p, div#display, ul { margin:0; }
+div#screen p, div#screen span, div#screen a { white-space:pre-wrap; }
+div#screen p.error { color:red; }
+div#screen li { list-style:none; }
+a, a:visited, .linky { color:#FFF; cursor:pointer; font-weight:bold; text-decoration:underline dotted; }
+a:hover, span.linky:hover, td.linky:hover { background-color:#FFF; color:#000; } /*you poor IE-using bastards*/
+table { border-collapse:collapse; }
+td { padding:0 1em 0 1em; }
+#cursor { font-weight:normal; background-color:#FFF; color:#000; /*text-decoration:underline;*/ }
+#prompt { color: lime; }
+#spinner { margin-left:1em; padding:0; display:none; font-weight:bold; line-height:0px; }
+
+
 /*.dollar:before {
     content: '$';
     padding-right: 20px;
@@ -619,3 +664,27 @@ strong {
     98% { left: -240px; }
     100% { left: -108px; }
 } 
+
+@-webkit-keyframes cursorAnim {
+	0%,
+	50%{opacity:1}100%,
+	50.1%{opacity:0}
+}
+
+@-moz-keyframes cursorAnim {
+	0%,
+	50%{opacity:1}100%,
+	50.1%{opacity:0}
+}
+
+@-o-keyframes cursorAnim {
+	0%,
+	50%{opacity:1}100%,
+	50.1%{opacity:0}
+}
+
+@keyframes cursorAnim {
+	0%,
+	50%{opacity:1}100%,
+	50.1%{opacity:0}
+}
