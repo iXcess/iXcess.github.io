@@ -170,6 +170,7 @@ function trim(a) {
     return ""
 }
 
+
 function entityEncode(a) {
     a = a.replace(/&/g, "&amp;");
     a = a.replace(/</g, "&lt;");
@@ -211,7 +212,7 @@ var TerminalShell = {
                 this.commands[d].apply(this, f)
             } else {
                 if (!(this.fallback && this.fallback(a, b))) {
-                    a.print('Unrecognized command. Type "--help" for assistance.')
+                    a.print('Unrecognized command. Type "help" for assistance.')
                 }
             }
             this.lastCommand = b
@@ -655,7 +656,7 @@ var remote = {
     root: null,
     last: null,
     cache: {},
-    base: "http://cybersoc.tekacs.com/data/",
+    base: "",
     get: function(b, c, a) {
         if (b == null) {
             b = ""
@@ -776,16 +777,14 @@ TerminalShell.filters.push(function(b, c) {
 });
 TerminalShell.commands.shutdown = TerminalShell.commands.poweroff = function(a) {
     if (this.sudo) {
-        a.print("Broadcast message from guest@cybersoc.net");
-        a.print();
-        a.print("The system is going down for maintenance NOW!");
+        a.print("Shutting down... ");
         return $("#screen").fadeOut()
     } else {
         a.print("Must be root.")
     }
 };
 TerminalShell.commands.logout = TerminalShell.commands.exit = TerminalShell.commands.quit = function(a) {
-    a.print("Bye.");
+    a.print("Bye bye c:");
     $("#prompt, #cursor").hide();
     a.promptActive = false
 };
@@ -854,76 +853,219 @@ function imageFile(a) {
 
 
 Filesystem = {
-    "welcome.txt": {
+    "info": {
         type: "file",
         read: function(a) {
-            a.print($("<h4>").text("Welcome to the CyberSoc shell."));
-            a.print("Hint: click the filenames below!");
-            $.each(["about.txt", "committee.txt", "resources.txt", "sponsors.txt"], function(b, c) {
-                var d = (Filesystem[c].type == "dir" ? "cd" : "cat");
-                a.print($("<span>").append("  ").append($("<a>").attr("href", "#").bind("click", function(e) {
-                    Terminal.runCommand(d + " " + c)
-                }).text(c)).append("  "))
-            });
-            a.print("Do have a play with the shell to seek out more complex commands!")
+            a.print("===================================================");
+            a.print($("<h4>").text("|------------- KOK YUAN TING -------------|"));
+            a.print("===================================================");
+            a.print("[+] Codename: iXcess");
+            a.print("[+] E-mail: brandonting@hotmail.com");
+            a.print("[+] Phone number: +6017-3611088");
         }
     },
-    "interstitial.txt": {
+    "skills": {
         type: "file",
         read: function(a) {
+            a.print("==================================================");
+            a.print($("<p>").text("-------------------- IT skills -------------------"));
+            a.print("==================================================");
+            a.print($("<p>").text("Programming languages"));
+            a.print("> HTML                  [===============>    ] 80%");
+            a.print("> CSS                   [=============>      ] 70%");
+            a.print("> Javascript            [===========>        ] 60%");
+            a.print("> Python                [=============>      ] 70%");
+            a.print("> Java                  [=========>          ] 50%");
+            a.print("> Bash                  [=========>          ] 50%");
+            a.print(" ");
+            a.print($("<p>").text("Design and animation"));
+            a.print("> Photoshop             [==============>     ] 70%");
+            a.print("> After Effects         [===========>        ] 60%");
+            a.print(" ");
+            a.print($("<h4>").text("Cyber Security"));            
+            a.print("> Cryptography          [=========>          ] 50%");
+            a.print("> Steganography         [=====>              ] 30%");
+            a.print("> Networking            [===============>    ] 80%");
+            a.print("> Wifi Security         [==================> ] 95%");
+            a.print("> Linux OS              [==================> ] 95%");
+            a.print("> Wireshark             [=========>          ] 50%");
+            a.print("> Metasploit            [=========>          ] 50%");
+            a.print("> Virtualization        [=========>          ] 50%");
+            a.print("> Data Mining           [=================>  ] 90%");
+            a.print("# I am very well informed in the security world.");
+            a.print(" ");
+            a.print($("<p>").text("Mechatronics")); 
+            a.print("> Raspberry Pi          [===============>    ] 80%");
+            a.print("> Arduino               [===============>    ] 80%");
+            a.print(" ");
+            a.print("==================================================");
+            a.print($("<p>").text("----------------- Language Skills ----------------"));
+            a.print("==================================================");
+            a.print("> Mandarin              [=================>  ] 90%");
+            a.print("> English               [=================>  ] 90%");
+            a.print("> Malay                 [=================>  ] 90%");
+            a.print("> Japanese              [===========>        ] 60%");
+            a.print("> German                [===>                ] 20%");
+            a.print("> Polish                [==>                 ] 15%");
+            a.print(" ");
+            a.print("==================================================");
+            a.print($("<p>").text("------------------ Music Skills ------------------"));
+            a.print("==================================================");
+            a.print("> Vocal                 [===========>        ] 60%");
+            a.print("> Guitar                [=================>  ] 90%");
+            a.print("> Drums                 [===============>    ] 80%");
+            a.print("> Beatbox               [=========>          ] 50%");
+
             a.print($("<p>").attr("style", "text-align: center; color: #BFB;").text("---"))
         }
     },
-    "license.txt": {
+    "achievements": {
         type: "file",
         read: function(a) {
-            a.print($("<p>").html('Client-side logic for Wordpress CLI theme :: <a href="http://thrind.xamai.ca/">R. McFarland, 2006, 2007, 2008</a>'));
-            a.print($("<p>").html('jQuery rewrite and overhaul :: <a href="http://www.chromakode.com/">Chromakode, 2010</a>'));
-            a.print($("<p>").html('Adaptation for CyberSoc :: <a href="http://www.tekacs.com/">tekacs, 2k13</a>'));
-            a.print();
-            $.each(["This program is free software; you can redistribute it and/or", "modify it under the terms of the GNU General Public License", "as published by the Free Software Foundation; either version 2", "of the License, or (at your option) any later version.", "", "This program is distributed in the hope that it will be useful,", "but WITHOUT ANY WARRANTY; without even the implied warranty of", "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the", "GNU General Public License for more details.", "", "You should have received a copy of the GNU General Public License", "along with this program; if not, write to the Free Software", "Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA."], function(c, b) {
-                a.print(b)
-            })
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("     _        _     _                                     _      "));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("    / \\   ___| |__ (_) _____   _____ _ __ ___   ___ _ __ | |_ ___"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("   / _ \\ / __| '_ \\| |/ _ \\ \\ / / _ \\ '_ ` _ \\ / _ \\ '_ \\| __/ __|"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  / ___ \\ (__| | | | |  __/\\ V /  __/ | | | | |  __/ | | | |_\\__ \\"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text(" /_/   \\_\\___|_| |_|_|\\___| \\_/ \\___|_| |_| |_|\\___|_| |_|\\__|___/ "));
+            a.print(" ");
+            a.print($("<p>").text("Technology")); 
+            a.print($("<p>").text('[+] Building a home server from scratch by understanding each hardware component.'));
+            a.print($("<p>").text('[+] Disassemble old CPU to salvage working components to build a new working server.')); 
+            a.print($("<p>").text('[+] Disassemble old DVD drive optical laser to be reused in laser trip wire system.')); 
+            a.print($("<p>").text('[+] Reuse old Intel Atom Dell Inspiron Mini as a portable hacking machine by installing a penetration testing operating system called Parrot OS. '));
+            a.print($("<p>").text('[+] Securing home wifi network with the knowledge of network scanners and wifi penetration tools such eg. ( wireshark, aircrack-ng, nmap, etc )'));
+            a.print($("<p>").text('[+] Wrote a language learning program with Python to help out my friend who is learning German.'));
+            a.print($("<p>").text('[+] Connected smart home appliances and let them communicate with each other via MQTT protocol.'));
+            a.print($("<p>").text('[+] Wrote an external IP grabber script with python coupled with a program which uploads data to the web server directly with the help on Dropbox API, written in bash.'));
+            a.print($("<p>").text('[+] Created a security door access system.'));
+            a.print($("<p>").text('[+] Created an automatic attendance taking application with QR technology.'));
+            a.print($("<p>").text('[+] Successfully implementing Bluetooth Low Energy as replacement for SSH to communicate with my Raspberry Pi.'));
+            a.print($("<p>").text('[+] Implementing RFID for authentication purposes.'));
+            a.print($("<p>").text('[+] Build myself a personal website from scratch with the help of HTTrack to clone sites as template.'));
+            a.print($("<p>").text('[+] Created a USB-like arduino pro micro to act as a HID device for penetration testing purposes.'));
+            a.print($("<p>").text('[+] Created a portable wifi hacking arsenal with raspberry pi.'));
+            a.print(" ");
+            a.print($("<p>").text("Education"));
+            a.print($("<p>").text('[+] Scored 9A+ 1A in the 2014 Sijil Pelajaran Malaysia examination.'));
+            a.print($("<p>").text('[+] Ministry of Education of Malaysia Bursary Holder.'));
+            a.print($("<p>").text('[+] Duke of Edinburgh Silver Award.'));
+            a.print($("<p>").text('[+] Got into Malaysia Computing Olympiad team.'));
+            a.print($("<p>").text('[+] Became a champion in ').append($("<a>").attr("href", "https://coderdojo.com/").attr("style","color: #5e80f9").attr("target","_blank").text("coderdojo.")));
+            a.print($("<p>").text('[+] Founded a Computing Technology Club called Dot∙slash.'));
+            a.print($("<p>").text('[+] Lead a group during the Japan-Malaysia Cultural Exchange Program.'));
+            a.print($("<p>").text('[+] Hosted TEDxTaylor\'s as the Head of Technical Department, ').append($("<a>").attr("href", "https://www.ted.com/about/programs-initiatives/tedx-program").attr("style","color: #5e80f9").attr("target","_blank").text("TEDx.")));
+            a.print(" ");
+            a.print($("<p>").text("Music"));
+            a.print($("<p>").text('[+] Set up a YouTube account to make guitar covers.'));
+            a.print($("<p>").text('[+] Perform in high school Mid Autumn Festival as a band.'));
+            a.print($("<p>").text('[+] Perform in high school prom night as a band.'));
+            a.print($("<p>").text('[+] Duet in Morning Wood cafe, twice.'));
+            a.print($("<p>").text('[+] Hosted Neocentric Music Night in college.'));
+            a.print(" ");
+            a.print($("<p>").text("Life"));
+            a.print($("<p>").text('[+] Backpack around Langkawi with my girlfriend and made friends.'));
+
         }
     },
-    "about.txt": {
+    "education": {
         type: "file",
         read: function(a) {
-            a.print($("<p>").html("Founded in 2012, CyberSoc is JBLH (Just a Bunch of L33T H4X0Rs)"));
-            a.print($("<p>").html("Hopefully it's fairly evident this is placeholder text. :D"))
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("(\\ "));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text(" \\'\\     __________ "));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text(" / '|   ()_________)"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text(" \\ '/    \\ ~~~~~~~~ \\"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("   \\       \\ ~~~~~~   \\            EDUCATION"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("   ==).      \\__________\\"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  (__)       ()__________)"));
+            a.print(" ");
+            a.print("Primary School");
+            a.print("-> SJK(C) Desa Jaya 2");
+            a.print(" ");
+            a.print("Secondary School");
+            a.print("----> SMK Bandar Sri Damansara 1");
+            a.print(" ");
+            a.print("Pre-University");
+            a.print("------> Taylor's College Subang Jaya");
         }
     },
-    "committee.txt": {
+    "work_experiences": {
         type: "file",
         read: function(a) {
-            a.print($("<p>").html("* Jonathan Millican (jrm209), President"));
-            a.print($("<p>").html("* Amar Sood (as2193, tekacs), Secretary"));
-            a.print($("<p>").html("* James McAulay (jddm2), Publicity Officer"));
-            a.print($("<p>").html("* Toby Miller (tm452), Treasurer"))
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("    _____"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("   /    /|_ ___________________________________________"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  /    // /|                                          /|"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text(" (====|/ //          Working                         / |"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  (=====|/              Experiences                 / .|"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text(" (====|/                                           / /||"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("/_________________________________________________/ / ||"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("|  _____________________________________________  ||  ||"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("| ||                                            | ||"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("| ||                                            | ||"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("| |                                             | |"));
+            a.print(" ");
+            a.print("The Great Eastern Life Assurance Company Limited");
+            a.print("> Administrative Assistant");
+            a.print(" ");
+            a.print("Sakae Sushi");
+            a.print("> Waiter and Cashier");
+            a.print(" ");
         }
     },
-    "resources.txt": {
+    "passion": {
         type: "file",
         read: function(a) {
-            a.print($("<p>").text("Watch this-> <-space!"))
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("                                  d8b"));
+            a.print($("<p>").text("                                  Y8P "));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  88888b.  8888b. .d8888b .d8888b 888 .d88b. 88888b."));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  888 \"88b    \"88b88K     88K     888d88\"\"88b888 \"88b"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  888  888.d888888\"Y8888b.\"Y8888b.888888  888888  888"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  888 d88P888  888     X88     X88888Y88..88P888  888"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  88888P\" \"Y888888 88888P\' 88888P\'888 \"Y88P\" 888  888"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  888"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  888"));
+            a.print($("<p>").attr("style", "margin: 0; padding:0;").text("  888"));
+            a.print(" ");
+            a.print("Technology");
+            a.print("> I am deeply into the Internet of Things and the Internet of Everything.");
+            a.print("> I love coding and create scripts that automate part of my life.");
+            a.print("> I envision to create a future with a more sustainable living with sustainable energy.");
+            a.print(" ");
+            a.print("Music");
+            a.print("> Singing and playing guitar makes my creativity flow.");
+            a.print("> Being in a part of music production has always been my honor.");
+            a.print(" ");
+            a.print("Sports");
+            a.print("> I love being free in water.");
+            a.print("> Badminton");
+            a.print("> Football");
+            a.print(" ");
+            a.print("Languages");
+            a.print("> Learning new languages to break barrier between human communication");
+            a.print(" ");
+            a.print("Movie and Anime");
+            a.print(" ");
+            a.print("Travelling");
+            a.print("> Backpacking around the world to meet people and help out to those in need.");   
         }
-    },
-    "sponsors.txt": {
-        type: "file",
-        read: function(a) {
-            a.print($("<p>").text("Proudly sponsored by:"));
-            a.print($("<p>").text("* KPMG UK : ").append($("<a>").attr("href", "http://www.kpmg.com/uk/").text("http://www.kpmg.com/uk/")));
-            a.print($("<p>").text("* Ensoft : ").append($("<a>").attr("href", "http://www.ensoft.co.uk").text("http://www.ensoft.co.uk")));
-            a.print($("<p>").text("* Security BSides London : ").append($("<a>").attr("href", "http://www.securitybsides.org.uk").text("http://www.securitybsides.org.uk")));
-            a.print($("<p>").text("* Dtex Systems : ").append($("<a>").attr("href", "http://www.dtexsystems.com").text("http://www.dtexsystems.com")))
-        }
+        
     }
+    
 };
-Filesystem["constitution.pdf"] = linkFile("http://cybersoc.net/static/constitution.pdf");
+Filesystem["kokyuanting.pdf"] = linkFile("../sources/document/kokyuanting.rtf");
 TerminalShell.pwd = Filesystem;
 TerminalShell.commands.echo = function(b) {
     for (var a = 1; a < arguments.length; a++) {
         b.print(arguments[a])
+    }
+};
+TerminalShell.commands.download = function(b) {
+    for (var a = 1; a < arguments.length; a++) {
+        var c = arguments[a];
+        if (c in this.pwd) {
+            document.getElementById('download').click();
+        } else {
+            b.print($("<p>").addClass("error").text('download: "' + c + '": No such file or directory.'))
+        }
     }
 };
 TerminalShell.commands.cd = function(a, b) {
@@ -939,6 +1081,7 @@ TerminalShell.commands.cd = function(a, b) {
         a.print("cd: " + b + ": No such file or directory")
     }
 };
+
 TerminalShell.commands.dir = TerminalShell.commands.ls = function(b, c) {
     var a = $("<ul>");
     $.each(this.pwd, function(d, e) {
@@ -1071,30 +1214,49 @@ TerminalShell.commands.sleep = function(a, b) {
     }, 1000 * b)
 };
 TerminalShell.commands.help = TerminalShell.commands.halp = function(a) {
-    a.print("That would be cheating!")
+    a.print("Below are the list of commands usable in this console.")
+    a.print(" ")
+    a.print("[Commands]                         [Usage]")
+    a.print("sudo                Gives you administrator's priviledges.")
+    a.print("clear               Clear terminal.")
+    a.print("cat [filename]      Concatenate the content of the file.")
+    a.print("echo [arg]          Print out the arguments in the console.")
+    a.print("cd [directory]      Change directory")
+    a.print("ls                  List down all files in current directory.")
+    a.print("rm [filename]       Remove file.")
+    a.print("download [filename] Download file.")
+    a.print("pwd                 List current directory.")
+    a.print("date                Print today's date.")
+    a.print("whoami              Print current user.")
+    a.print("ping                Packet internet groper.")
+    a.print("ssh                 Secure Shell.")
+    a.print("bash                Open Bash.")
+    a.print("kill                Kill all processes.")
+    a.print("top                 View running processes.")
+    a.print("shutdown            Shutdown.")
+    a.print("reboot              Reboot.")
+    a.print("sleep [time]        Sleep for t seconds.")
+    a.print("apt-get [arg]       [arg] = update/upgrade/dist-upgrade.")
+    a.print("exit                Exit terminal.")
 };
 TerminalShell.fallback = function(a, b) {
     oneliners = {
         "make me a sandwich": "What? Make it yourself.",
-        "make love": "I put on my robe and wizard hat.",
         "i read the source code": "<3",
-        pwd: "You are in a maze of twisty passages, all alike.",
-        lpr: "PC LOAD LETTER",
-        xyzzy: "Nothing happens.",
-        date: "March 32nd",
+        pwd: "You are currently in my heart <3",
+        date: "You don't have a date! (;",
         hello: "Why hello there!",
         who: "Doctor Who?",
         xkcd: "Yes?",
-        su: "God mode activated. Remember, with great power comes great ... aw, screw it, go have fun.",
-        fuck: "I have a headache.",
-        whoami: "You are Richard Stallman.",
+        su: "God mode activated.",
+        fuck: "I hate it when people say that.",
+        whoami: "You are my master.",
         nano: "Seriously? Why don't you just use Notepad.exe? Or MS Paint?",
-        top: "It's up there --^",
+        top: "Stop checking my processes, get yourself a better rig!",
         moo: "moo",
         ping: "There is another submarine three miles ahead, bearing 225, forty fathoms down.",
         find: "What do you want to find? Kitten would be nice.",
         hello: "Hello.",
-        more: "Oh, yes! More! More!",
         hi: "Hi.",
         bash: "You bash your head against the wall. It's not very effective.",
         ssh: "ssh, this is a library.",
