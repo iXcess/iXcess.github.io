@@ -16,6 +16,8 @@ let startTime = null;
 let currentSpeed = 0;
 let prevLatLng = null;
 let distanceTravelled = 0;
+let userWalkedPath = [];
+let currentGeoTs = 0;
 
 
 // Accuracy Options for Geolocation API
@@ -124,20 +126,30 @@ function getCurrentGeolocation() {
 
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
+
 	    id = navigator.geolocation.watchPosition((position) => {
+	    	// Success
 
-	        let pos = {
-	            lat: position.coords.latitude,
-	            lng: position.coords.longitude,
-	            acc: position.coords.accuracy
-	        };
+	    	if (Date.now() != currentGeoTs) {
+	    		
+	    		currentGeoTs = Date.now();
+	    		let pos = {
+	    		    lat: position.coords.latitude,
+	    		    lng: position.coords.longitude,
+	    		    acc: position.coords.accuracy
+	    		};
 
-	        positionHistory.push(pos);
-	        displayAccuracyCircle(pos);
-	        displayMarker(pos);
-	        main(pos);
-	        map.setCenter(pos);
-	    }, errorHandler(2), geoOptions);
+	    		positionHistory.push(pos);
+	    		displayAccuracyCircle(pos);
+	    		displayMarker(pos);
+	    		main(pos);
+	    		map.setCenter(pos);
+	    	}
+	    }, 
+	    // Fail
+	    errorHandler(2),
+	    // Options 
+	    geoOptions);
 	} else {
 	    errorHandler(3);
 	}
@@ -221,7 +233,8 @@ function main(pos) {
 	if (selectedPath.latlng.length == 0) {
 		// End the geolocation service
 		navigator.geolocation.clearWatch(id);
-		displayMessage("You have reached your destination!");
+		document.getElementById("shadowDiv").style.display = 'block';
+		document.getElementById("inputTitleField").style.display = 'block';
 	}
 
 	// Only updates when accuracy is high
@@ -275,7 +288,7 @@ function main(pos) {
 	
 		let midInfo = document.getElementById("midInfo");
 		midInfo.innerHTML = "<div class='distanceInfo'>" + distanceRemaining.toFixed(0) + "m remaining" + "</div>";
-		midInfo.innerHTML += "<div class='ETAInfo'>" + eta.toFixed(0) + "min ETA" + "</div>";
+		midInfo.innerHTML += "<div class='ETAInfo'>" + "ETA " + eta.toFixed(0) + "min</div>";
 	}
 	else {
 		console.log("Low accuracy!")
