@@ -125,7 +125,7 @@ body {
 	color: white;
 	height: 100%;
 	font-family: 'Roboto', sans-serif;
-	overflow: scroll;
+	overflow: hidden;
     overflow-x: hidden;
 }
 
