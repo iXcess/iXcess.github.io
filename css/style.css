@@ -125,6 +125,8 @@ body {
 	color: white;
 	height: 100%;
 	font-family: 'Roboto', sans-serif;
+	overflow: scroll;
+    overflow-x: hidden;
 }
 
 .pathList {
