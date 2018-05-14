@@ -88,7 +88,7 @@ setInterval(() => {
 // Set delay to make sure googleAPI is fully loaded.
 setTimeout(() => {
 	displayPaths(pathList); 
-}, 1500);
+}, 1000);
 
 
 
