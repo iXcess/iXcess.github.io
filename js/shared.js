@@ -1,7 +1,15 @@
 /*
- * Insert documentation
- * The shared.js is used to defined shared global variables and classes.
+ * This javascript file contains all the dependencies function from all the page.
+ * The main execution code of this page is written at the far bottom.
+ *
+ * Contributor: 
+ * 1. Kok Yuan Ting 29269016
+ * 2. Lau Lee Yan   29338328
+ * 3. Liew Ze Ching 28937031
+ *
+ * Last modified: 19/5/18
  */
+
  'use strict';
 
  let pathList = [];
@@ -16,7 +24,7 @@
  let googleApiRequestData = {
     "v": 3,
     "key": "AIzaSyBpvAOT4tY_62P62YjabOJTKJKkIqIrGLE",
-    "libraries": "geometry"
+    "libraries": "geometry",
 
  }
  let pathRequestData = {

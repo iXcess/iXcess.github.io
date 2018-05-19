@@ -1,7 +1,19 @@
 /*
- * Insert documentation
+ * This javascript file contains all the dependencies function from the navigation page.
+ * The main execution code of this page is written at the far bottom.
+ *
+ * Contributor: 
+ * 1. Kok Yuan Ting 29269016
+ * 2. Lau Lee Yan 	29338328
+ * 3. Liew Ze Ching 28937031
+ *
+ * Last modified: 19/5/18
  */
+
 'use strict';
+
+// =============================================================================================================================== //
+// Variables 
 let map = null;
 let currentPath = null;
 let selectedPath = null;
@@ -26,6 +38,9 @@ let geoOptions = {
 	timeout: 60000,
 	maximumAge: 0
 }
+
+// =============================================================================================================================== //
+// Functions
 
 /*
  * Displays the map object into the canvas in nav page.
@@ -300,6 +315,10 @@ function main(pos) {
 	
 }
 
+/*
+ * This function will get the relative direction in degrees.
+ * Function then displays a visual command of where the user should head next
+ */
 function getDirection(userHeading,locationHeading) {
 
 	let headingDiff = locationHeading - userHeading;
@@ -366,6 +385,9 @@ function computeHeading(point1,point2) {
 
 	return google.maps.geometry.spherical.computeHeading(firstPoint,nextPoint);
 }
+
+// =============================================================================================================================== //
+// Main execution
 
 /* From W3C DeviceOrientation Event specification:
  * http://w3c.github.io/deviceorientation/spec-source-orientation.html

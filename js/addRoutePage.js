@@ -1,7 +1,19 @@
 /*
- * Insert documentation
+ * This javascript file contains all the dependencies function from the addRoute.js.
+ * The main execution code of this page is written at the far bottom.
+ *
+ * Contributor: 
+ * 1. Kok Yuan Ting 29269016
+ * 2. Lau Lee Yan 	29338328
+ * 3. Liew Ze Ching 28937031
+ *
+ * Last modified: 19/5/18
  */
+
 'use strict';
+
+// =============================================================================================================================== //
+// Variables
 let map = null;
 let currentSetPosition = null;
 let currentPositionIndex = 0;
@@ -10,6 +22,9 @@ let finalPath = null;
 let setLatLng = [];
 let markers = [];
 let firstPoint = true;
+
+// =============================================================================================================================== //
+// Functions
 
 /*
  * Displays the map object into the canvas in nav page.
@@ -200,6 +215,9 @@ function panToCenter() {
 
 }
 
+/*
+ * This function will create display a pop-up using css
+ */
 function proceed() {
 	let ref = document.getElementById("shadowDiv");
 	ref.style.display = 'block';
@@ -254,6 +272,9 @@ function finalisePath() {
 	
 
 }
+
+// =============================================================================================================================== //
+// Main execution
 
 // Set delay to make sure googleAPI is fully loaded.
 setTimeout(() => {

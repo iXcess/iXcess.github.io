@@ -1,7 +1,18 @@
 /*
- * Insert documentation
+ * This javascript file contains all the dependencies function from the main page.
+ * The main execution code of this page is written at the far bottom.
+ *
+ * Contributor: 
+ * 1. Kok Yuan Ting 29269016
+ * 2. Lau Lee Yan 	29338328
+ * 3. Liew Ze Ching 28937031
+ *
+ * Last modified: 19/5/18
  */
+
 'use strict';
+
+// =============================================================================================================================== //
 
 /*
  * Persistent storing of paths into local storage 
@@ -38,6 +49,14 @@ function displayPaths(array) {
 	let tag5 = " m</span>";
 
 	for (let item of array) {
+
+		if (index === 0) {
+			construct += "<li class='mdl-list__item pathDisplayOptions'><span class=\"mdl-list__item-primary-content\"><span>" + "Server Routes" + "</span></li>"
+		}
+		if (index === 2) {
+			construct += "<li class='mdl-list__item pathDisplayOptions'><span class=\"mdl-list__item-primary-content\"><span>" + "User Routes" + "</span></li>"
+		}
+
 		construct += tag1 + index + tag2 + item.title + tag3 + item.noOfTurns + tag4 + item.distance + tag5;
 		index++;
 	}
@@ -76,6 +95,7 @@ function displayHeaderMsg() {
 	messageRef.innerHTML = messages[choice];
 }
 
+// =============================================================================================================================== //
 
 
 // Main execution starts
